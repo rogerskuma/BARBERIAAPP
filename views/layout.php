@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div class="contendor-app">
+    <div class="contenedor-app">
         <div class="imagen"></div>
         <div class="app">
         <?php echo $contenido; ?>      
