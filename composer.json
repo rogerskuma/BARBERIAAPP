@@ -1,0 +1,17 @@
+{
+    "name": "saasled/barberia-app",
+    "description": "barberia",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Saasled\\BarberiaApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "rogerskuma",
+            "email": "107814710+rogerskuma@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
