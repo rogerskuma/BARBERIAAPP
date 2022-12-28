@@ -4,7 +4,10 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Saasled\\BarberiaApp\\": "src/"
+            "Saasled\\BarberiaApp\\": "src/",
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models"
         }
     },
     "authors": [
