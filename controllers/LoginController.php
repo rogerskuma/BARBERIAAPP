@@ -21,7 +21,9 @@ class LoginController {
         echo "recuperar";
     }
 
-    public static function crear() {
-        echo "crear cuenta";
+    public static function crear(Router $router) {
+        $router->render('/auth/crear-cta' , [
+            
+        ]); 
     }
 }
