@@ -56,8 +56,8 @@ class LoginController {
 
                     $email->enviarConfirmacion();
 
-                    debuguear($email);
-                    debuguear($usuario);
+                    //debuguear($email);
+                    //debuguear($usuario);
                 }
             }     
         }
