@@ -1,5 +1,5 @@
 <h1 class="nombre-pagina">Olvide Password</h1>
-<p class="descripcion-pagina"> Restablece password escribieno tu mail</p>
+<p class="descripcion-pagina"> Restablece password escribiendo tu E-mail</p>
 
 <form class="formulario" action="/olvide" method="POST" >
     <div class="campo">
