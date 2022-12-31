@@ -21,9 +21,9 @@ class LoginController {
                 $usuario = Usuario::where('email', $auth->email);
 
                 if($usuario) {
-                    //verificar el password
+                    //verificar el password 
                     if( $usuario->comprobarPasswordAndVerificado($auth->password) ) {
-                        // Autenticar al usuario
+                        // Autenticar al usuario 479
                         session_start();
                         $_SESSION['id'] = $usuario->id;
                         $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
@@ -58,8 +58,29 @@ class LoginController {
     }
 
     public static function olvide(Router $router) {
-        $router->render('auth/olvide-password', [
+            $alertas = [];
 
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $auth = new  Usuario($_POST);
+                    $alertas = $auth->validarEmail();
+
+                    if(empty($alertas)) {
+                        $usuario = Usuario::where('email', $auth->email);
+                            if($usuario && $usuario->confirmado === "1") {
+                                //generar un token
+                                $usuario->crearToken();
+                                $usuario->guardar();
+
+                             //   TODO: Enviar el mail
+                            Usuario::setAlerta('exito', 'Revisa tu email');
+                            }else {
+                            Usuario::setAlerta('error', 'El usuario no existe o no esta confirmado');
+                            }
+                    }
+            }
+            $alertas = Usuario::getAlertas();
+        $router->render('auth/olvide-password', [
+                'alertas' => $alertas
         ]);
     }
 
