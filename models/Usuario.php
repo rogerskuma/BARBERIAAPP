@@ -48,7 +48,7 @@ class Usuario extends ActiveRecord {
         }
 
         if(!$this->password) {
-            self::$alertas['error'][] ='El password es importante';
+            self::$alertas['error'][] ='El Password es importante';
         }
         if(strlen($this->password) <6){
             self::$alertas['error'] [] = 'Password: por lo menos Seis caracteres';
@@ -58,7 +58,7 @@ class Usuario extends ActiveRecord {
 
     public function validarLogin() {
         if(!$this->email ) {
-            self::$alertas['error'] [] = 'El mail es Obligatorio';
+            self::$alertas['error'] [] = 'El Email es Obligatorio';
         }
         if(!$this->password ) {
             self::$alertas['error'] [] = 'El Password es Obligatorio';
@@ -69,10 +69,10 @@ class Usuario extends ActiveRecord {
 
     public function validarEmail() {
         if(!$this->email ) {
-            self::$alertas['error'] [] = 'El mail es Obligatorio';
+            self::$alertas['error'] [] = 'El Email es Obligatorio';
         }
         return self::$alertas;
-               
+
     }
 
     //Revisar si usuario ya existe

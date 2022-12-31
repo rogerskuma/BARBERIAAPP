@@ -73,12 +73,13 @@ class LoginController {
 
                              //   TODO: Enviar el mail
                             Usuario::setAlerta('exito', 'Revisa tu email');
-                            }else {
+                            } else {
                             Usuario::setAlerta('error', 'El usuario no existe o no esta confirmado');
                             }
                     }
             }
             $alertas = Usuario::getAlertas();
+
         $router->render('auth/olvide-password', [
                 'alertas' => $alertas
         ]);
