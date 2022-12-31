@@ -2,7 +2,8 @@
 
 <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
 
-<div class="boton_confirmar" tipo="submit" value="Iniciar Sesión">
+
+<div class="boton">
     <a href="/">Iniciar Sesión</a>
     
 </div> 

@@ -7,7 +7,49 @@ use MVC\Router;
 
 class LoginController {
     public static function login( Router $router ) {
-        $router->render('auth/login');
+        $alertas = [];
+        
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $auth = new  Usuario($_POST);
+
+            $alertas = $auth->validarLogin();
+            //debuguear($auth);
+
+            if(empty($alertas)) {
+                //Comprobar que exista el usuario
+                $usuario = Usuario::where('email', $auth->email);
+
+                if($usuario) {
+                    //verificar el password
+                    if( $usuario->comprobarPasswordAndVerificado($auth->password) ) {
+                        // Autenticar al usuario
+                        session_start();
+                        $_SESSION['id'] = $usuario->id;
+                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                        $_SESSION['email'] = $usuario->email;
+                        $_SESSION['login'] = true;
+
+                        // Redireccionamiento
+
+                        if($usuario->admin === "1") {
+                            $_SESSION['admin'] = $usuario->admin ?? null;
+                            header('Location: /admin');
+                        } else
+                          header('Location: /cita');
+                        }
+                        }else {
+                        Usuario::setAlerta('error', 'Usuario no encontrado');
+                }
+            }
+        }
+
+
+        $alertas = Usuario::getAlertas();
+        $router->render('auth/login', [
+            'alertas' => $alertas
+
+        ]);
 
     }
 
@@ -83,7 +125,7 @@ class LoginController {
     public static function confirmar(Router $router) {
         $alertas = [];
 
-        $token = s($_GET['token']);
+        $token =  s($_GET['token']);
 
         $usuario = Usuario::where('token', $token);
 
@@ -93,12 +135,14 @@ class LoginController {
         } else {
             //Modificar a usuario confirmado
             $usuario->confirmado = "1";
-            // $usuario->token = null;
+            $usuario->token = null;
             $usuario->guardar();
             //debuguear($usuario);
             Usuario::setAlerta('exito', 'Tu cuenta ha sido activada correctamente');
         }
+        //Obtener alertas
         $alertas = Usuario::getAlertas();
+        //Renderizar la vista
         $router->render('auth/confirmar-cuenta', [
                 'alertas' => $alertas
         ]);
