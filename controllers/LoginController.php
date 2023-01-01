@@ -72,6 +72,11 @@ class LoginController {
                                 $usuario->guardar();
 
                              //   TODO: Enviar el mail
+                                $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
+                                $email->enviarInstrucciones();
+
+
+                             //Alerta de éxito
                             Usuario::setAlerta('exito', 'Revisa tu email');
                             } else {
                             Usuario::setAlerta('error', 'El usuario no existe o no esta confirmado');
@@ -85,8 +90,50 @@ class LoginController {
         ]);
     }
 
-    public static function recuperar() {
-        echo "recuperar";
+    public static function recuperar(Router $router) {
+            $alertas = [];
+            $error = false;
+            $token = s($_GET['token']);
+
+        //Buscar a usuario por su token
+
+        $usuario = Usuario::where('token', $token);
+        // debuguear($usuario);
+        if(empty($usuario) ) {
+            Usuario::setAlerta('error', 'Token no Válido');
+            $error = true;
+        } 
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Leer el nuevo password y guardarlo
+
+            $password = new Usuario($_POST);
+            $alertas = $password->validarPassword();
+
+            if(empty($alertas)) {
+                $usuario->password = null;
+                // debuguear($password);
+              
+                $usuario->password = $password->password;
+                $usuario->hashPassword();
+                $usuario->token = null;
+
+                $resultado = $usuario->guardar();
+                if($resultado) {
+                    header('Location: /');
+                }
+                // debuguear($usuario);         
+            } 
+
+            //  debuguear($password);
+         }
+
+        
+            $alertas = Usuario::getAlertas();
+            $router->render('auth/recuperar-password', [
+                'alertas' => $alertas,
+                'error' => $error
+            ]);
     }
 
     public static function crear(Router $router) {
