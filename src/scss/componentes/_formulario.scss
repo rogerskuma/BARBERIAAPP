@@ -17,7 +17,13 @@
         flex: 1;
         border: none;
         padding: calc(v.$separacion / 4);
-        border-radius: 1rem; 
+        border-radius: 1rem;
+        
+        &:disabled {
+            background-color: lighten($color: #000000, $amount: 0);
+            color: v.$blanco;
+            cursor: not-allowed;
+        }
     }
 
 }
