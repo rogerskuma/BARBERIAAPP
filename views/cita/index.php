@@ -1,4 +1,4 @@
-<h1 class="nombre-página">Crear nueva Cita</h1>
+<h1 class="nombre-pagina">Crear nueva Cita</h1>
 <p class="descripcion-pagina">Elige tus servicios y coloca tus datos</p>
 
 <div id="app">
@@ -19,25 +19,26 @@
                 <p class="text-center">Coloca tus datos y fecha de tu cita</p>
     
                 <form class="formulario">
+                        <div class="campo">
+                                <label for="nombre">Nombre</label>
+                                <input  
+                                            id="nombre"
+                                            type="text"
+                                            placeholder="Tu Nombre"
+                                            value="<?php echo $nombre; ?>"
+                                            //disabled
+                                />
+                        </div>
+
                 <div class="campo">
-                        <label for="nombre">Nombre:</label>
-                        <input  
-                            id="nombre"
-                            type="text"
-                            placeholder="Tu Nombre"
-                            value="<?php echo $nombre; ?>"
-                            disabled
-                            />
-                </div>
-                <div class="campo">
-                        <label for="Fecha">Fecha:</label>
+                        <label for="fecha">Fecha</label>
                         <input  
                             id="fecha"
                             type="date"
                             />
                 </div>
                 <div class="campo">
-                        <label for="hora">Hora:</label>
+                        <label for="hora">Hora</label>
                         <input  
                             id="hora"
                             type="time"

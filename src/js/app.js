@@ -13,6 +13,8 @@ function iniciarApp() {
     botonesPaginador();
     paginaSiguiente();
     paginaAnterior();
+
+    consultarAPI();  //Consulta la API en el backend de PHP
 }
 
 function mostrarSeccion() {
@@ -55,9 +57,9 @@ function tabs() {
 }
 
 function botonesPaginador() {
-    const paginaSiguiente = document.querySelector('#siguiente');
     const paginaAnterior = document.querySelector('#anterior');
-
+    const paginaSiguiente = document.querySelector('#siguiente');
+    
     if( paso ===1) {
         paginaAnterior.classList.add('ocultar');
         paginaSiguiente.classList.remove('ocultar');
@@ -90,3 +92,17 @@ function paginaSiguiente() {
     botonesPaginador();    
     })
 }
+
+async function consultarAPI() {
+        try {
+                const url = 'http://localhost:3000/api/servicios';
+                const resultado = await fetch(url);
+                const servicios = await resultado.json();
+                console.log(servicios);
+
+        } catch (error)  {
+            console.log(error);
+        }
+}
+
+
