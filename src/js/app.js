@@ -319,6 +319,10 @@ botonReservar.onclick = reservarCita;
 }
 
 function reservarCita() {
-    console.log('Reservando cita...');
+    const datos = new FormData();
+    datos.append('nombre', 'kuma');
+    
+
+    // console.log([...datos]);
 }
 
