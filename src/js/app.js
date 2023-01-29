@@ -3,12 +3,11 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
-    id: '',
+    
     nombre: '',
     fecha: '',
     hora: '',
     servicios: []
-
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -18,14 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function iniciarApp() {
     mostrarSeccion( ); //Muestra y oculta las secciones
     tabs(); //cambia la sección cuando se presionen los tabs
-    botonesPaginador();
+    botonesPaginador(); //Agregar o quitar los botones del paginador
     paginaSiguiente();
     paginaAnterior();
 
     consultarAPI();  //Consulta la API en el backend de PHP
 
-    idCliente(); //
-    nombreCliente(); //Añade nombre del cliente a cita
+    idCliente();               //
+    nombreCliente();    //Añade nombre del cliente a cita
     seleccionarFecha(); //Añade la fecha de la cita en el objeto
     seleccionarHora(); //Añade la hora de la cita en el objeto
     mostrarResumen(); //Muestra el resumen de la cita
@@ -56,22 +55,18 @@ function mostrarSeccion() {
 }
 
 function tabs() {
+
     const botones = document.querySelectorAll('.tabs button');
 
-
     botones.forEach( boton => {
-        boton.addEventListener('click', function(e) {
-            // console.log(e.target.dataset);
+        boton.addEventListener('click', function(e) {  
             paso = parseInt(e.target.dataset.paso);
             mostrarSeccion();
 
             botonesPaginador();
 
-            // if(paso === 3) {
-            //     mostrarResumen;
-            // }
             });                 
-    })
+    });
 }
 
 function botonesPaginador() {
@@ -81,11 +76,12 @@ function botonesPaginador() {
     if( paso ===1) {
         paginaAnterior.classList.add('ocultar');
         paginaSiguiente.classList.remove('ocultar');
+
     } else if (paso === 3) {
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.add('ocultar');
         
-        mostrarResumen();
+    mostrarResumen();
     } else {
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.remove('ocultar');
@@ -99,8 +95,8 @@ function paginaAnterior() {
         if(paso <= pasoInicial) return;
         paso--;
 
-    botonesPaginador();    
-    })
+        botonesPaginador();    
+    });
 }
 
 function paginaSiguiente() {
@@ -125,7 +121,7 @@ async function consultarAPI() {
         }
 }
 
-function mostrarServicios(servicios) {
+function mostrarServicios() {
     servicios.forEach( servicio => {
         const{ id, nombre, precio} = servicio;
 
@@ -146,7 +142,6 @@ function mostrarServicios(servicios) {
 
         servicioDiv.appendChild(nombreServicio);
         servicioDiv.appendChild(precioServicio);
-        //console.log(servicioDiv);
 
         document.querySelector('#servicios').appendChild(servicioDiv);
 
@@ -160,13 +155,13 @@ function seleccionarServicio(servicio) {
     //identificar el elemento al que se le da click
     const divServicio = document.querySelector(`[data-id-servicio="${id}"]`);
 
-    //Comprobar si un servicio ya fue agregado
+    //Comprobar si un servicio ya fue activado o desactivado
     if( servicios.some( agregado => agregado.id === id) ) {
-        //Eliminarlo
+        //Desactivar
         cita.servicios = servicios.filter( agregado => agregado.id !== id );
         divServicio.classList.remove('seleccionado');        
     }else {
-        //Agregarlo
+        //Activarlo
         cita.servicios = [...servicios, servicio];
         divServicio.classList.add('seleccionado');
     }
@@ -180,7 +175,6 @@ function idCliente () {
 
 function nombreCliente() {
     cita.nombre= document.querySelector('#nombre').value;
-    // console.log(nombre);
 }
 
 function seleccionarFecha() {
@@ -209,7 +203,7 @@ function seleccionarHora() {
         } else {
             cita.hora = e.target.value;
 
-            // console.log(cita);
+         //   console.log(cita);
         }
     });
 }
@@ -230,6 +224,7 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
     alerta.classList.add(tipo);
 
     const referencia = document.querySelector(elemento);
+
     referencia.appendChild(alerta);
 
     if(desaparece) {
@@ -253,12 +248,11 @@ function mostrarResumen() {
 
     if(Object.values(cita).includes('')  || cita.servicios.length === 0)  {
         mostrarAlerta('Faltan datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
-    
-    return;
+
     } 
 
     //Formatear el div de resumen
-    const { nombre, fecha, hora, servicios} = cita;
+    const { nombre, fecha, hora} = cita;
 
 //Heading para Servicios en Resumen
 const headingServicios = document.createElement('H3');
@@ -266,7 +260,9 @@ headingServicios.textContent = 'Resumen de Servicios';
 resumen.appendChild(headingServicios);
 
 // Iterando y mostrando los servicios
-    servicios.forEach(servicio => {
+function mostrarServicios() {
+    
+servicios.forEach(servicio => {
         const { id, precio, nombre} = servicio;
         const contenedorServicio = document.createElement('DIV');
         contenedorServicio.classList.add('contenedor-servicio');
@@ -283,7 +279,7 @@ resumen.appendChild(headingServicios);
         resumen.appendChild(contenedorServicio);
 
     })
-
+}
     //Heading para Cita en Resumen
 const headingCita = document.createElement('H3');
 headingCita.textContent = 'Resumen de Cita';
@@ -313,7 +309,7 @@ resumen.appendChild(headingCita);
 //Boton para crear cita
 const botonReservar = document.createElement('BUTTON');
 botonReservar.classList.add('boton');
-botonReservar.textContent = 'Reservar Cita';
+botonReservar.textContent = 'Reservar Cita'
 botonReservar.onclick = reservarCita;
 
 
@@ -325,26 +321,25 @@ botonReservar.onclick = reservarCita;
 }
 
 async function reservarCita() {
-    const{nombre, fecha, hora, servicios } = cita;
-
-    const idServicios = servicios.map( servicio => servicio.id);
-    
-    // console.log(idServicios);
-
+    const{fecha, hora, usuarioId } = cita;
+    const servicios = servicios.map( servicio => servicio.id);
+    //console.log(idServicios);
+    // return;
 
     const datos = new FormData();
+    //datos.append('nombre', nombre);
     datos.append('fecha', fecha);
     datos.append('hora', hora);
-    datos.append('usuarioId', id);
-    datos.append('servicios', idServicios);
+    datos.append('usuarioId', usuarioId);
+    datos.append('servicios', servicios);
 
-    // console.log([...datos]);
-
+    //console.log([...datos]);
+    //return;
 
     //Petición hacia la api
-const url  = 'http://localhost:3000/api/citas'
+    const url  = 'http://localhost:3000/api/citas';
 
-const respuesta = await fetch(url, {
+    const respuesta = await fetch(url,{
     method: 'POST',
     body: datos 
 });

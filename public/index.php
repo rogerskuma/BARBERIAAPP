@@ -6,7 +6,6 @@ use Controllers\APIController;
 use Controllers\CitaController;
 use Controllers\LoginController;
 use MVC\Router;
-
 $router = new Router();
 
 //Iniciar sesión

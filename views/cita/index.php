@@ -1,5 +1,5 @@
 <h1 class="nombre-pagina">Crear nueva Cita</h1>
-<p class="descripcion-pagina">Elige tus servicios y coloca tus datos</p>
+<p class="descripcion-pagina">Elige tus servicios / Llena tus datos</p>
 
 <div id="app">
     <nav class="tabs">
@@ -18,7 +18,7 @@
                 <h2>Tus Datos y Cita</h2>
                 <p class="text-center">Coloca tus datos y fecha de tu cita</p>
     
-                <form class="formulario">
+        <form class="formulario">
                         <div class="campo">
                                 <label for="nombre">Nombre</label>
                                 <input  
@@ -26,7 +26,7 @@
                                             type="text"
                                             placeholder="Tu Nombre"
                                             value="<?php echo $nombre; ?>"
-                                            //disabled
+                                            disabled
                                 />
                         </div>
 
@@ -46,11 +46,12 @@
                             id="hora"
                             type="time"
                             />
-                </div>
-                <input type="hidden" id="id" value="<?php echo $id; ?>" >
-        </form>
+                </div>        
+                <input type="hidden" id="id" value="<?php echo $id ?>" 
+            </form> 
     </div>
-            <div id="paso-3"  class="seccion contenido-resumen">
+
+           <div id="paso-3"  class="seccion contenido-resumen">
                 <h2>Resumen</h2>
                 <p class="text-center">Verífica que la información sea correcta</p>
             </div>
@@ -64,7 +65,7 @@
                     <button
                         id="siguiente"
                         class="boton"
-                    >Siguiente &raquo; </button> 
+                    >Siguiente &raquo;</button> 
                 </div>  
     </div>
 
