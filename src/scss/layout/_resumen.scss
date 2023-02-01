@@ -2,7 +2,8 @@
 
 .contenido-resumen {
     p {
-            margin-bottom: 1rem;
+            margin-bottom: .5rem;
+            text-align: center;
     }
 
     span {
@@ -16,8 +17,9 @@
 .contenedor-servicio {
     padding: 3rem 0;
     border-bottom: 1px solid v.$gris;
+    text-align: center;
 
     &:last-of-type {
-        margin-bottom: v.$separacion;
+        margin-bottom: v.$separacion/2;
     }
 }
