@@ -130,6 +130,11 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+    // Consulta Plana de SQL (Utilizar cuando los métodos del modelo no son suficientes) sección 534consultarbdconphp
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
 
     // crea un nuevo registro
     public function crear() {
@@ -142,6 +147,8 @@ class ActiveRecord {
         $query .= " ) VALUES (' "; 
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
+
+        //return json_encode (['query' => $query]);
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);

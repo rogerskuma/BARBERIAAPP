@@ -1,7 +1,7 @@
 @use 'base/variables' as v;
 
 .alerta {
-    padding: calc(v.$separacion / 4);
+    padding: calc(1.25rem);
     color:  v.$blanco;
     width: 100%;
     display: block;

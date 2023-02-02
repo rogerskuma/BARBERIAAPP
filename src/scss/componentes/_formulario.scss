@@ -16,7 +16,7 @@
     input {
         flex: 1;
         border: none;
-        padding: calc(v.$separacion / 4);
+        padding: calc(1.25rem);
         border-radius: 1rem;
         
         &:disabled {
