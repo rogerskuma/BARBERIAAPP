@@ -107,7 +107,6 @@ class Usuario extends ActiveRecord {
         }
 
         public function comprobarPasswordAndVerificado ($password) {
-            //debuguear($this);
             $resultado = password_verify($password, $this->password ?? '');
             
 
