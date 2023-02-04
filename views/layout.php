@@ -22,6 +22,6 @@
     <?php  
             echo $script ?? '';
     ?>
-                
+        <a href="https://www.freepik.com/free-photo/young-man-barbershop-trimming-hair_12804095.htm#query=barbershop&position=6&from_view=keyword">Image by senivpetro</a> on Freepik        
 </body>
 </html>
