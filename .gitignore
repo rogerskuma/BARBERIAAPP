@@ -1,4 +1,8 @@
-node_modules
-
-/vendor/
+node_modules/
+vendor/
+src/
+package.jason
+package-lock.jason
+.DS_Store
+.env
 
