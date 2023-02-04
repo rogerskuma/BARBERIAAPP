@@ -50,8 +50,7 @@
             ?>
                         <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
 
-                <!-- Para obtener el total a pagar sección 537calculareltotalapagar-->
-                <?php
+                        <?php
                                 $actual = $cita->id;
                                 $proximo = $citas[$key + 1]->id ?? 0;
 

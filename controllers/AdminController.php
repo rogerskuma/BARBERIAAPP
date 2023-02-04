@@ -31,9 +31,7 @@ class AdminController {
         $consulta .= " ON servicios.id=citasservicios.servicioId ";
         $consulta .= " WHERE fecha = '$fecha' ";
 
-        $citas = AdminCita::SQL($consulta); //sección 534consultabdconphp
-
-        //debuguear($citas);
+        $citas = AdminCita::SQL($consulta); 
 
         $router->render('admin/index', [
             'nombre' => $_SESSION['nombre'],

@@ -103,7 +103,6 @@ class LoginController {
         //Buscar a usuario por su token
 
         $usuario = Usuario::where('token', $token);
-        // debuguear($usuario);
         if(empty($usuario) ) {
             Usuario::setAlerta('error', 'Token no Válido');
             $error = true;
@@ -117,7 +116,6 @@ class LoginController {
 
             if(empty($alertas)) {
                 $usuario->password = null;
-                // debuguear($password);
               
                 $usuario->password = $password->password;
                 $usuario->hashPassword();
@@ -127,10 +125,8 @@ class LoginController {
                 if($resultado) {
                     header('Location: /');
                 }
-                // debuguear($usuario);         
             } 
 
-            //  debuguear($password);
          }
 
         
@@ -178,8 +174,6 @@ class LoginController {
                     if($resultado) {
                         header('Location: /mensaje');
                     }
-                    //debuguear($email);
-                    // debuguear($usuario);
                 }
             }     
         }
@@ -211,7 +205,6 @@ class LoginController {
             $usuario->confirmado = "1";
             $usuario->token = null;
             $usuario->guardar();
-            //debuguear($usuario);
             Usuario::setAlerta('exito', 'Tu cuenta ha sido activada correctamente');
         }
         //Obtener alertas
