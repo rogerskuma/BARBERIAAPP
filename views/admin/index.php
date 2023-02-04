@@ -21,7 +21,7 @@
 
 <?php 
             if(count($citas) === 0) {
-                echo "<h2>Aun sin citas</h2>";
+                echo "<h2>Aún sin citas</h2>";
             }
 ?>
 
