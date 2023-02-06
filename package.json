@@ -32,6 +32,6 @@
     "debug": "^4.3.4",
     "strip-eof": "^2.0.0",
     "strip-final-newline": "^3.0.0",
-    "uuid": "^7.0.0"
+    "uuid": "^9.0.0"
   }
 }
