@@ -7,6 +7,9 @@ src/
 #Ignora la carpeta vendor
 vendor/
 
+#Ignora la base de datos
+barberiaapp.sql
+
 #Ignora
 package.jason
 package-lock.jason
@@ -22,6 +25,7 @@ package-lock.jason
 
 #Ignora archivos de configuración SASS
 .sass-cache
+
 
 
 
