@@ -1,8 +1,23 @@
+#Ignora la carpeta node_modules
 node_modules/
+
+#Ignora la carpeta vendor
 vendor/
+#Ignora la carpate src
 src/
+
 package.jason
 package-lock.jason
+
+#Ignora archivos del sistema mac
 .DS_Store
+#Ignora archivos realacionados a API keys
 .env
+
+#Ignora todos los archivos de texto
+*.txt
+
+#Ignora archivos de configuración SASS
+.sass-cache
+
 
