@@ -1,16 +1,25 @@
 #Ignora la carpeta node_modules
 node_modules/
 
-#Ignora la carpeta vendor
-vendor/
-#Ignora la carpate src
+#Ignora la carpeta src
 src/
 
+#Ignora la carpeta vendor
+vendor/
+
+#Ignora base de datos
+barberiaapp.sql
+
+#Ignora 
+gulpfile.js
+
+#Ignora
 package.jason
 package-lock.jason
 
 #Ignora archivos del sistema mac
 .DS_Store
+
 #Ignora archivos realacionados a API keys
 .env
 
@@ -19,5 +28,9 @@ package-lock.jason
 
 #Ignora archivos de configuración SASS
 .sass-cache
+
+
+
+
 
 
