@@ -10,9 +10,12 @@ vendor/
 #Ignora la base de datos
 barberiaapp.sql
 
+#Ignora gulp
+gulpfile.js
+
 #Ignora
-package.jason
-package-lock.jason
+package.json
+package-lock.json
 
 #Ignora archivos del sistema mac
 .DS_Store
